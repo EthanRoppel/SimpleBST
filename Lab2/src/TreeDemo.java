@@ -139,29 +139,53 @@ class BinarySearchTree{
       };
 
       Stack<Node> stack = new Stack<Node>();
+      Stack<Integer> stackCtr = new Stack<Integer>();
       ArrayList<Integer> orderList = new ArrayList<Integer>();
-      Stack<Node> visited = new Stack<Node>();
 
-      Node node = root;
-      while (node != null || !stack.isEmpty()) {
-         while (node != null) {
-            stack.push(node);
-            node = node.left;
+      stack.push(root);
+      stackCtr.push(0);
+
+      while (!stack.empty())
+      {
+         int ctr = stackCtr.pop();
+         Node node = stack.peek();
+
+         if (ctr == 0)
+         {
+            // First visit.
+            stackCtr.push(1);
+
+            if (node.left != null)
+            {
+               stack.push(node.left);
+               stackCtr.push(0);
+            }
          }
+         else if (ctr == 1)
+         {
+            // Second visit.
+            // Left subtree done.
+            stackCtr.push(2);
 
-         node = stack.peek();
-         if (node.right != null && !visited.contains(node.right)) {
-            node = node.right;
-         } else {
-            node = stack.pop();
+            if (node.right != null)
+            {
+               stack.push(node.right);
+               stackCtr.push(0);
+            }
+         }
+         else // ctr >= 2
+         {
+            // Third visit.
+            // Right subtree done.
+            stack.pop();
             orderList.add(node.value);
-            visited.push(node);
-            node = null;
          }
       }
 
-      for (int value : orderList) {
-         System.out.println(value);
+      int[] order = new int[orderList.size()];
+      for (int i = 0; i < order.length; i++)
+      {
+         System.out.println(orderList.get(i));
       }
    }
 
@@ -174,27 +198,42 @@ class BinarySearchTree{
     * @return true if value is in tree, false if not found
     */
    public boolean find(Node root, int key){
-      Node cur = root;
-      while (cur != null) {
-         if (key < cur.value) {
-            cur = cur.left;
-         } else if (key == cur.value) {
-            return true;
-         } else {
-            cur = cur.right;
-         }
+      if(root == null)
+      {
+         return false;
       }
-      return false;
+
+      if(root.value == key)
+      {
+         return true;
+      }
+
+      if(key < root.value)
+      {
+         return find(root.left, key);
+      }
+      else
+      {
+         return find(root.right, key);
+      }
    }
-   
-   
-   
-   /*
-   a method to find the node in the tree
-   with a smallest key
-   */
-   public int getMin(Node root){
-      //implement me
+
+
+   /**
+    * A method which finds the node with the smallest value in a tree
+    *
+    * @param root the top of the bst being processed
+    * @return the value of the smallest entry in the bst
+    */
+   public int getMin(Node root) {
+      if (root == null) {
+         System.out.println("The tree is empty.");
+      } else if (root.left == null) {
+         return root.value;
+      } else {
+         return getMin(root.left);
+      }
+      return 0;
    }
   
   
