@@ -40,9 +40,9 @@ class BinarySearchTree{
 
 
    /**
-    * A method which traverses the input tree in preorder and outputs it to the console.
+    * A method which traverses the input tree in pre order and outputs it to the console.
     *
-    * @param root
+    * @param root the top of the bst being processed
     */
    public void preOrderTraversal(Node root){
       if (root == null) {
@@ -77,21 +77,50 @@ class BinarySearchTree{
 
    }
 
-   
-   
-   /*
-   in-order traversal
-   */
+
+   /**
+    * A method which traverses the input tree in order and outputs it to the console.
+    *
+    * @param root the top of the bst being processed
+    */
    public void inOrderTraversal(Node root){
-      //implement me
+      if (root == null) {
+         System.out.println("");
+      };
+
+      Stack<Node> stack = new Stack<Node>();
+      ArrayList<Integer> orderList = new ArrayList<Integer>();
+
+      for (Node node = root;;)
+      {
+         if (node == null)
+         {
+            if (stack.empty()) break;
+
+            node = stack.pop();
+            orderList.add(node.value);
+            node = node.right;
+         }
+         else
+         {
+            stack.push(node);
+            node = node.left;
+         }
+      }
+
+      int[] order = new int[orderList.size()];
+      for (int i = 0; i < order.length; i++)
+      {
+         System.out.println(orderList.get(i));
+      }
+
    }
 
 
    /**
+    * A method which traverses the input tree in post order and outputs it to the console.
     *
-    * A method which traverses the input tree in Post Order and outputs it to the console.
-    *
-    * @param root
+    * @param root the top of the bst being processed
     */
    public void postOrderTraversal(Node root){
       if (root == null) {
