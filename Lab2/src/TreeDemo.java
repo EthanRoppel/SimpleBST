@@ -40,7 +40,7 @@ class BinarySearchTree{
 
 
    /**
-    * A method which traverses the input tree in preorder and outputs it.
+    * A method which traverses the input tree in preorder and outputs it to the console.
     *
     * @param root
     */
@@ -85,14 +85,44 @@ class BinarySearchTree{
    public void inOrderTraversal(Node root){
       //implement me
    }
-   
-   
-   
-   /*
-   post-order traversal
-   */
+
+
+   /**
+    *
+    * A method which traverses the input tree in Post Order and outputs it to the console.
+    *
+    * @param root
+    */
    public void postOrderTraversal(Node root){
-      //implement me
+      if (root == null) {
+         System.out.println("");
+      };
+
+      Stack<Node> stack = new Stack<Node>();
+      ArrayList<Integer> orderList = new ArrayList<Integer>();
+      Stack<Node> visited = new Stack<Node>();
+
+      Node node = root;
+      while (node != null || !stack.isEmpty()) {
+         while (node != null) {
+            stack.push(node);
+            node = node.left;
+         }
+
+         node = stack.peek();
+         if (node.right != null && !visited.contains(node.right)) {
+            node = node.right;
+         } else {
+            node = stack.pop();
+            orderList.add(node.value);
+            visited.push(node);
+            node = null;
+         }
+      }
+
+      for (int value : orderList) {
+         System.out.println(value);
+      }
    }
    
    
