@@ -11,7 +11,12 @@ import java.util.Stack;
 class Node{
    int value;
    Node left, right;
-   
+
+   /**
+    * Creates a node with the given value.
+    *
+    * @param value The value of the node.
+    */
    public Node(int value){
       this.value = value;
       left = null;
@@ -19,6 +24,7 @@ class Node{
    }
 
 }
+
 
 class BinarySearchTree{
 
@@ -53,7 +59,7 @@ class BinarySearchTree{
    /**
     * A method which traverses the input tree in pre order and outputs it to the console.
     *
-    * @param root the top of the bst being processed
+    * @param root the top of the bst being processed.
     */
    public void preOrderTraversal(Node root){
       if (root == null) {
@@ -83,7 +89,7 @@ class BinarySearchTree{
       int[] order = new int[orderList.size()];
       for (int i = 0; i < order.length; i++)
       {
-         System.out.println(orderList.get(i));
+         System.out.print(orderList.get(i) + " ");
       }
 
    }
@@ -92,7 +98,7 @@ class BinarySearchTree{
    /**
     * A method which traverses the input tree in order and outputs it to the console.
     *
-    * @param root the top of the bst being processed
+    * @param root the top of the bst being processed.
     */
    public void inOrderTraversal(Node root){
       if (root == null) {
@@ -122,7 +128,7 @@ class BinarySearchTree{
       int[] order = new int[orderList.size()];
       for (int i = 0; i < order.length; i++)
       {
-         System.out.println(orderList.get(i));
+         System.out.print(orderList.get(i) + " ");
       }
 
    }
@@ -131,7 +137,7 @@ class BinarySearchTree{
    /**
     * A method which traverses the input tree in post order and outputs it to the console.
     *
-    * @param root the top of the bst being processed
+    * @param root the top of the bst being processed.
     */
    public void postOrderTraversal(Node root){
       if (root == null) {
@@ -185,7 +191,7 @@ class BinarySearchTree{
       int[] order = new int[orderList.size()];
       for (int i = 0; i < order.length; i++)
       {
-         System.out.println(orderList.get(i));
+         System.out.print(orderList.get(i) + " ");
       }
    }
 
@@ -193,9 +199,9 @@ class BinarySearchTree{
    /**
     * A method which determines if a tree contains a value.
     *
-    * @param root the top of the bst being processed
-    * @param key the value that may be in the tree
-    * @return true if value is in tree, false if not found
+    * @param root the top of the bst being processed.
+    * @param key the value that may be in the tree.
+    * @return true if value is in tree, false if not found.
     */
    public boolean find(Node root, int key){
       if(root == null)
@@ -220,10 +226,10 @@ class BinarySearchTree{
 
 
    /**
-    * A method which finds the node with the smallest value in a tree
+    * A method which finds the node with the smallest value in a tree.
     *
-    * @param root the top of the bst being processed
-    * @return the value of the smallest entry in the bst
+    * @param root the top of the bst being processed.
+    * @return the value of the smallest entry in the bst.
     */
    public int getMin(Node root) {
       if (root == null) {
@@ -235,23 +241,34 @@ class BinarySearchTree{
       }
       return 0;
    }
-  
-  
-  
-   /*
-   a method to find the node in the tree
-   with a largest key
-   */
+
+
+
+   /**
+    * A method which finds the node with the largest value in a tree.
+    *
+    * @param root the top of the bst being processed.
+    * @return the value of the largest entry in the bst.
+    */
    public int getMax(Node root){
-	  //implement me
+      if (root == null) {
+         System.out.println("The tree is empty.");
+      } else if (root.right == null) {
+         return root.value;
+      } else {
+         return getMax(root.right);
+      }
+      return 0;
    }
-   
-   
-   
-   /*
-   this method will not compile until getMax
-   is implemented
-   */
+
+
+   /**
+    * Deletes a node from a BST and balances the tree.
+    *
+    * @param root the top of the bst being processed.
+    * @param key the value of the node that needs to be deleted.
+    * @return the new bst.
+    */
    public Node delete(Node root, int key){
       
       if(root == null){
@@ -287,19 +304,39 @@ class BinarySearchTree{
 
 
 public class TreeDemo{
+
+   /**
+    * The main method which inserts somne values into a bst and tests each function.
+    * @param args command line arguments
+    */
    public static void main(String[] args){
-      BinarySearchTree t1  = new BinarySearchTree();
-      t1.insert(24);
-      t1.insert(80);
-      t1.insert(18);
-      t1.insert(9);
-      t1.insert(90);
-      t1.insert(22);
+      BinarySearchTree theBST  = new BinarySearchTree();
+      theBST.root = theBST.insert(theBST.root, 24);
+      theBST.root = theBST.insert(theBST.root, 80);
+      theBST.root = theBST.insert(theBST.root, 18);
+      theBST.root = theBST.insert(theBST.root, 9);
+      theBST.root = theBST.insert(theBST.root, 90);
+      theBST.root = theBST.insert(theBST.root, 22);
             
       System.out.print("in-order :   ");
-      t1.inOrderTraversal(t1.root);
+      theBST.inOrderTraversal(theBST.root);
       System.out.println();
-           
-      
+
+      System.out.print("pre-order :   ");
+      theBST.preOrderTraversal(theBST.root);
+      System.out.println();
+
+      System.out.print("post-order :   ");
+      theBST.postOrderTraversal(theBST.root);
+      System.out.println();
+
+      System.out.println("It is " + theBST.find(theBST.root, 8) + " that the tree contains the value 8");
+
+      System.out.println("It is " + theBST.find(theBST.root, 9) + " that the tree contains the value 9");
+
+      System.out.println("The minimum value is:" + theBST.getMin(theBST.root));
+
+      System.out.println("The maximum value is:" + theBST.getMax(theBST.root));
+
    }  
 }
