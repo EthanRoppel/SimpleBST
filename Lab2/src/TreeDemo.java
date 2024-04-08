@@ -153,16 +153,27 @@ class BinarySearchTree{
          System.out.println(value);
       }
    }
-   
-   
-   
-   /*
-   a method to find the node in the tree
-   with a specific value
-   */
+
+
+   /**
+    * A method which determines if a tree contains a value.
+    *
+    * @param root the top of the bst being processed
+    * @param key the value that may be in the tree
+    * @return true if value is in tree, false if not found
+    */
    public boolean find(Node root, int key){
-	  //implement me
-      return false;           
+      Node cur = root;
+      while (cur != null) {
+         if (key < cur.value) {
+            cur = cur.left;
+         } else if (key == cur.value) {
+            return true;
+         } else {
+            cur = cur.right;
+         }
+      }
+      return false;
    }
    
    
