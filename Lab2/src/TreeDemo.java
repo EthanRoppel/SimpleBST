@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Stack;
+
 class Node{
    int value;
    Node left, right;
@@ -34,14 +37,44 @@ class BinarySearchTree{
       
       return root;
    }
-   
-   
-   
-   /*
-   pre-order traversal
-   */
+
+
+   /**
+    * A method which traverses the input tree in preorder and outputs it.
+    *
+    * @param root
+    */
    public void preOrderTraversal(Node root){
-      //implement me
+      if (root == null) {
+         System.out.println("");
+      };
+
+      Stack<Node> stack = new Stack<Node>();
+      ArrayList<Integer> orderList = new ArrayList<Integer>();
+
+      for (Node node = root;;)
+      {
+         if (node == null)
+         {
+            if (stack.empty()) break;
+
+            node = stack.pop();
+            node = node.right;
+         }
+         else
+         {
+            orderList.add(node.value);
+            stack.push(node);
+            node = node.left;
+         }
+      }
+
+      int[] order = new int[orderList.size()];
+      for (int i = 0; i < order.length; i++)
+      {
+         System.out.println(orderList.get(i));
+      }
+
    }
 
    
