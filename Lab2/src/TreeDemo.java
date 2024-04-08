@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
+//Ethan Roppel 41753979
+        /*
+        I pledge that this submission is solely my work,
+        and that I have neither given to nor
+        received help from anyone other than the instructor or TAs.
+         */
+
 class Node{
    int value;
    Node left, right;
@@ -16,11 +23,15 @@ class Node{
 class BinarySearchTree{
 
    Node root;
-   
-   
-   /*
-   recursive insert method
-   */
+
+
+   /**
+    * Inserts a value into the given tree, maintaining the BST property.
+    *
+    * @param root The top of the bst being processed.
+    * @param value The value being added to the bst.
+    * @return The top of the new bst
+    */
    public Node insert(Node root, int value){
       //base case
       if(root == null){
