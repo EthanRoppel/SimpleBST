@@ -9,7 +9,7 @@ import java.util.Stack;
          */
 
 /**
- * The node class is ab instance of a node in a BST.
+ * The node class is an instance of a node in a BST.
  */
 class Node{
    int value;
