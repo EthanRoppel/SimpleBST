@@ -8,6 +8,9 @@ import java.util.Stack;
         received help from anyone other than the instructor or TAs.
          */
 
+/**
+ * The node class is ab instance of a node in a BST.
+ */
 class Node{
    int value;
    Node left, right;
@@ -36,7 +39,7 @@ class BinarySearchTree{
     *
     * @param root The top of the bst being processed.
     * @param value The value being added to the bst.
-    * @return The top of the new bst
+    * @return The top of the new bst.
     */
    public Node insert(Node root, int value){
       //base case
@@ -57,7 +60,7 @@ class BinarySearchTree{
 
 
    /**
-    * A method which traverses the input tree in pre order and outputs it to the console.
+    * A method which traverses the input tree in pre-order and outputs it to the console.
     *
     * @param root the top of the bst being processed.
     */
@@ -96,7 +99,7 @@ class BinarySearchTree{
 
 
    /**
-    * A method which traverses the input tree in order and outputs it to the console.
+    * A method which traverses the input tree in-order and outputs it to the console.
     *
     * @param root the top of the bst being processed.
     */
@@ -135,7 +138,7 @@ class BinarySearchTree{
 
 
    /**
-    * A method which traverses the input tree in post order and outputs it to the console.
+    * A method which traverses the input tree in post-order and outputs it to the console.
     *
     * @param root the top of the bst being processed.
     */
@@ -306,8 +309,8 @@ class BinarySearchTree{
 public class TreeDemo{
 
    /**
-    * The main method which inserts somne values into a bst and tests each function.
-    * @param args command line arguments
+    * The main method which inserts some values into a bst and tests each function.
+    * @param args command line arguments.
     */
    public static void main(String[] args){
       BinarySearchTree theBST  = new BinarySearchTree();
@@ -318,25 +321,24 @@ public class TreeDemo{
       theBST.root = theBST.insert(theBST.root, 90);
       theBST.root = theBST.insert(theBST.root, 22);
             
-      System.out.print("in-order :   ");
+      System.out.print("Testing in-order   :   ");
       theBST.inOrderTraversal(theBST.root);
       System.out.println();
 
-      System.out.print("pre-order :   ");
+      System.out.print("Testing pre-order  :   ");
       theBST.preOrderTraversal(theBST.root);
       System.out.println();
 
-      System.out.print("post-order :   ");
+      System.out.print("Testing post-order :   ");
       theBST.postOrderTraversal(theBST.root);
       System.out.println();
 
-      System.out.println("It is " + theBST.find(theBST.root, 8) + " that the tree contains the value 8");
+      System.out.println("Testing find()     :   It is " + theBST.find(theBST.root, 8) + " that the tree contains the value 8");
 
-      System.out.println("It is " + theBST.find(theBST.root, 9) + " that the tree contains the value 9");
+      System.out.println("Testing find()     :   It is " + theBST.find(theBST.root, 9) + " that the tree contains the value 9");
 
-      System.out.println("The minimum value is:" + theBST.getMin(theBST.root));
+      System.out.println("Testing getMin()   :   The minimum value is: " + theBST.getMin(theBST.root));
 
-      System.out.println("The maximum value is:" + theBST.getMax(theBST.root));
-
+      System.out.println("Testing getMax()   :   The maximum value is: " + theBST.getMax(theBST.root));
    }  
 }
